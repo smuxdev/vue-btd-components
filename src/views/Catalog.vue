@@ -5,7 +5,7 @@
     </h1>
     <ul>
       <li>
-        <router-link to="/globalMessagesTest">Global message panel</router-link>
+        <router-link to="/globalMessagesTest">&lt;GlobalMessages&gt; component</router-link>
       </li>
       <li>
         <router-link to="/...">...</router-link>
