@@ -1,10 +1,8 @@
 <template>
-  <div :class="['alert', 'alert-' + type, 'alert-dismissible']" role="alert">
+  <div :class="['alert', 'alert-' + type]" role="alert">
     <i class="fas fa-info-circle"></i>
     {{msg}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">×</span>
-    </button>
+    <i class="fas fa-times close"></i>
   </div>
 </template>
 
@@ -36,22 +34,18 @@ export default {
   font-weight: 400;
   line-height: 1.5;
 }
-.alert-dismissible {
-  padding-right: 4rem;
-}
 .close {
   cursor: pointer;
   float: right;
   font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
   color: #000;
-  text-shadow: 0 1px 0 #fff;
   opacity: 0.5;
-  text-transform: none;
-  overflow: visible;
-  margin: 0;
-  border-radius: 0;
+}
+.close:hover {
+  opacity: 0.7;
+}
+.close:active {
+  opacity: 0.3;
 }
 .alert-danger {
   color: #721c24;
