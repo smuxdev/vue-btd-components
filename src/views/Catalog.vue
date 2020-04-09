@@ -5,10 +5,10 @@
     </h1>
     <ul>
       <li>
-        <a href="/testGlobalMessagePanel">Global message panel</a>
+        <router-link to="/globalMessagesTest">Global message panel</router-link>
       </li>
       <li>
-        <a href="/...">...</a>
+        <router-link to="/...">...</router-link>
       </li>
     </ul>
   </div>
