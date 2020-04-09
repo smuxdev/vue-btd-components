@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to" title="Vue Btd Components" />
+    <img class="mapfre-logo" alt="Mapfre logo" src="../assets/logo-mapfre-byn.png.webp" />
+
+    <HelloWorld msg="Welcome to" title="Mapfre Vue Components" />
   </div>
 </template>
 
@@ -16,3 +18,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.mapfre-logo {
+  position: relative;
+  left: -5rem;
+  bottom: 1rem;
+}
+</style>

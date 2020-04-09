@@ -34,20 +34,21 @@ export default {
 <style scoped>
 .hello h1 span {
   font-weight: bolder;
-  color: #d5ca93;
 }
 a {
-  color: #42b983;
+  color: #d7725a;
 }
 .custom-block.tip {
   background-color: #f3f5f7;
-  border-color: #42b983;
+  border-color: #d7725a;
 }
 .custom-block.tip {
   padding: 0.1rem 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
   margin: 1rem 0;
+  max-width: 60rem;
+  margin: 0 auto;
 }
 .custom-block .custom-block-title {
   font-weight: 600;
