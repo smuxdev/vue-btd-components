@@ -1,58 +1,59 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>
+      {{ msg }}
+      <span>{{title}}</span>!
+    </h1>
     <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
+      Just a bunch of
+      <b>Vue Single File components</b> for use in your interfaces,
+      <br />here they are:
+      <router-link to="/catalog">Catalog</router-link>.
     </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+    <div class="custom-block tip">
+      <p class="custom-block-title">DISCLAIMER</p>
+      <p>
+        Use these components at your own risk. There is no support service, although the 'Development Support' team will be happy to assist you.
+        You can modify the components as you wish according to your own needs.
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
+    title: String
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+.hello h1 span {
+  font-weight: bolder;
+  color: #d5ca93;
 }
 a {
   color: #42b983;
+}
+.custom-block.tip {
+  background-color: #f3f5f7;
+  border-color: #42b983;
+}
+.custom-block.tip {
+  padding: 0.1rem 1.5rem;
+  border-left-width: 0.5rem;
+  border-left-style: solid;
+  margin: 1rem 0;
+}
+.custom-block .custom-block-title {
+  font-weight: 600;
+  margin-bottom: -0.4rem;
+}
+.custom-block p {
+  line-height: 1.7;
 }
 </style>
