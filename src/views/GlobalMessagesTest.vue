@@ -13,8 +13,8 @@
       <GlobalMessages />
       <div class="test-area">
         <fieldset>
+          <legend>Global message configuration</legend>
           <form id="testAreaForm">
-            <legend>Global message configuration</legend>
             <span>
               <label>Message type:&nbsp;</label>
               <select v-model="type" required>
