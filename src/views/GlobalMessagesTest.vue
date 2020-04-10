@@ -11,6 +11,31 @@
     </h1>
     <div class="component-content">
       <GlobalMessages />
+      <div class="test-area">
+        <fieldset>
+          <form id="testAreaForm">
+            <legend>Global message configuration</legend>
+            <span>
+              <label>Message type:&nbsp;</label>
+              <select v-model="type" required>
+                <option value selected>-- Select --</option>
+                <option value="success">success</option>
+                <option value="info">info</option>
+                <option value="warning">warning</option>
+                <option value="danger">danger</option>
+              </select>
+            </span>
+            <span>
+              <label>Message content:&nbsp;</label>
+              <input v-model="msg" type="text" style="min-width: 220px" required />
+            </span>
+            <span>
+              <button v-on:click="showMessage">Show Message</button>
+              <button v-on:click="hiddeMessage" v-show="globalMessagesVisible">Discard Message</button>
+            </span>
+          </form>
+        </fieldset>
+      </div>
     </div>
   </div>
 </template>
@@ -21,8 +46,28 @@ import GlobalMessages from "@/components/GlobalMessages.vue";
 
 export default {
   name: "GlobalMessagesTest",
+  data: function() {
+    return {
+      type: "",
+      msg: "",
+      globalMessagesVisible: false
+    };
+  },
   components: {
     GlobalMessages
+  },
+  methods: {
+    showMessage() {
+      let form = document.getElementById("testAreaForm");
+      if (form.checkValidity()) {
+        this.globalMessagesVisible = true;
+        this.$root.$emit("showMessageEvent", this.type, this.msg);
+      }
+    },
+    hiddeMessage() {
+      this.globalMessagesVisible = false;
+      this.$root.$emit("hiddeMessageEvent");
+    }
   }
 };
 </script>
@@ -31,8 +76,14 @@ export default {
 .global-messages-test {
   text-align: left;
 }
-.catalog {
-  text-align: left;
+.test-area {
+  padding: 1rem;
+  background-color: #f3f5f7;
+  border-radius: 0.25rem;
+  border: solid 1px #d0d0d0;
+}
+.test-area span {
+  margin: 0 1rem 0 1rem;
 }
 h1 {
   margin: 1rem;
@@ -58,5 +109,16 @@ h1 span {
 .component-content {
   padding-left: 1rem;
   padding-right: 1rem;
+  font-size: 0.9rem;
+}
+fieldset {
+  border-radius: 0.25rem;
+  border: solid 1px #d0d0d0;
+  padding: 1rem;
+}
+input:invalid,
+select:invalid {
+  border: solid 1px grey;
+  border-left: solid 4px #d7725a;
 }
 </style>

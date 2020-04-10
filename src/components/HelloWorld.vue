@@ -13,8 +13,17 @@
     <div class="custom-block tip">
       <p class="custom-block-title">DISCLAIMER</p>
       <p>
-        Use these components at your own risk. There is no support service, although the 'Development Support' team will be happy to assist you.
+        Use these components at your own risk. There is no official support service, although the 'Development Support team' will be happy to assist you.
         You can modify the components as you wish according to your own needs.
+      </p>
+    </div>
+    <p></p>
+    <div class="custom-block tip">
+      <p class="custom-block-title">DEPENDENCIES</p>
+      <p>
+        These components only depend on
+        <b>Vuejs 2.x</b> and the
+        <b>Fontawesome</b> web font for icon rendering.
       </p>
     </div>
   </div>
