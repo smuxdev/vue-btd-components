@@ -15,7 +15,7 @@
         <GlobalMessages />
       </fieldset>
       <fieldset class="test-area">
-        <legend>Global message configuration</legend>
+        <legend>Global messages configuration</legend>
         <form id="testAreaForm">
           <span>
             <label>Message type:&nbsp;</label>

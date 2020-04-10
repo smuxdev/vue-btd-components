@@ -3,10 +3,11 @@ import App from './App.vue'
 import router from './router'
 import './assets/fonts/fontawesome-free-5.13.0-web/css/all.min.css';
 import 'typeface-roboto/index.css';
+import "typeface-titan-one"
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app') 

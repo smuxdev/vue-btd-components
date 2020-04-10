@@ -22,6 +22,11 @@ const routes = [
     path: '/globalMessagesTest',
     name: 'GlobalMessagesTest',
     component: () => import('../views/GlobalMessagesTest.vue')
+  },
+  {
+    path: '/englishKidsQuarantine',
+    name: 'EnglishKidsQuarantine',
+    component: () => import('../views/EnglishKidsQuarantine.vue')
   }
 ]
 

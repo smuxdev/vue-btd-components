@@ -8,7 +8,7 @@
         <router-link to="/globalMessagesTest">&lt;GlobalMessages&gt; component</router-link>
       </li>
       <li>
-        <router-link to="/...">...</router-link>
+        <router-link to="/englishKidsQuarantine">English Kids Quarantine</router-link>
       </li>
     </ul>
   </div>
