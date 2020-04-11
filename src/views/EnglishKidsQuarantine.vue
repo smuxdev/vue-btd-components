@@ -12,8 +12,9 @@
       </p>
     </div>
 
-    <ScoreBar />
-    <GameBoard :inGame="inGame" />
+    <ScoreBar :inGame="inGame" :points="points" :lives="lives" />
+    <GameBoard :inGame="inGame" :points="points" :lives="lives" />
+    <GameOver :gameOver="gameOver" />
 
     <footer class="footer">
       All images from: http://www.rawpixel.com
@@ -42,6 +43,7 @@ import GlobalMessages from "@/components/GlobalMessages.vue";
 import GameTitle from "@/components/gameComponents/GameTitle.vue";
 import ScoreBar from "@/components/gameComponents/ScoreBar.vue";
 import GameBoard from "@/components/gameComponents/GameBoard.vue";
+import GameOver from "@/components/gameComponents/GameOver.vue";
 
 export default {
   name: "EnglishKidsQuarantine",
@@ -49,16 +51,39 @@ export default {
     GlobalMessages,
     GameTitle,
     ScoreBar,
-    GameBoard
+    GameBoard,
+    GameOver
   },
   data: function() {
     return {
-      inGame: false
+      inGame: false,
+      gameOver: false,
+      lives: 3,
+      points: 0
     };
   },
   mounted() {
     this.$root.$on("gameStartEvent", () => {
       this.inGame = true;
+      this.lives = 3;
+      this.points = 0;
+      this.gameOver = false;
+    });
+    this.$root.$on("gameStartEvent", () => {
+      this.inGame = true;
+    });
+    this.$root.$on("addPointsEvent", points => {
+      this.points += points;
+    });
+    this.$root.$on("loseLiveEvent", () => {
+      this.lives -= 1;
+      // Ends Game?
+      if (this.lives <= 0) {
+        this.inGame = false;
+        setTimeout(() => {
+          this.gameOver = true;
+        }, 1500);
+      }
     });
   }
 };

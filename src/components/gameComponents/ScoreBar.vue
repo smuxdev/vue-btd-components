@@ -25,21 +25,21 @@
 export default {
   name: "ScoreBar",
   data: function() {
-    return {
-      lives: 3, // default number of lives
-      points: 0,
-      inGame: false // Are the game begins?
-    };
+    return {};
   },
-  mounted() {
-    /*this.$root.$on("showMessageEvent", (type, msg) => {
-      this.type = type;
-      this.msg = msg;
-      this.visible = true;
-    });
-    this.$root.$on("hiddeMessageEvent", () => {
-      this.visible = false;
-    });*/
+  props: {
+    inGame: {
+      default: false,
+      type: Boolean
+    },
+    lives: {
+      default: 3,
+      type: Number
+    },
+    points: {
+      default: 0,
+      type: Number
+    }
   },
   methods: {
     startGame() {

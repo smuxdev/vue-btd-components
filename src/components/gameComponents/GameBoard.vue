@@ -6,13 +6,7 @@
       </span>
       <span class="word-list">
         <ul>
-          <li>Torch</li>
-          <li>Tree</li>
-          <li>Elephant</li>
-          <li>In</li>
-          <li>In front of</li>
-          <li>Cat</li>
-          <li>Dog</li>
+          <li v-for="answer in answers" :key="answer" v-on:click="checkAnswer">{{answer}}</li>
         </ul>
       </span>
       <transition name="fade" mode="out-in">
@@ -30,15 +24,34 @@ export default {
   data: function() {
     return {
       imgNumber: 0,
-      lives: 3
+      tries: 0,
+      answers: []
     };
   },
   props: {
-    inGame: Boolean
+    inGame: Boolean,
+    lives: {
+      default: 3,
+      type: Number
+    },
+    points: {
+      default: 0,
+      type: Number
+    }
   },
   watch: {
     inGame: function(val) {
+      // Game initialization
       if (val) {
+        this.answers = [
+          "Torch",
+          "Tree",
+          "Dog",
+          "In",
+          "Cat",
+          "In front of",
+          "Elephant"
+        ];
         this.imgNumber = Math.floor(Math.random() * 5) + 1;
       }
     }
@@ -46,6 +59,21 @@ export default {
   computed: {
     needTip: function() {
       return this.lives < 3;
+    }
+  },
+  methods: {
+    checkAnswer() {
+      let points = 0;
+      if (this.tries <= 1) {
+        points = 10;
+      } else if (this.tries === 2) {
+        points = 5;
+      } else if (this.tries === 3) {
+        points = 2;
+      }
+
+      this.$root.$emit("addPointsEvent", points);
+      this.$root.$emit("loseLiveEvent");
     }
   }
 };
