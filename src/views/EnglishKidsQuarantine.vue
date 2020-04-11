@@ -13,6 +13,19 @@
     </div>
 
     <ScoreBar />
+    <GameBoard :inGame="inGame" />
+
+    <footer class="footer">
+      All images from: http://www.rawpixel.com
+      <span class="credits">
+        By Samuel González Izquerdo. 2020
+        <a
+          href="http://www.twitter.com/babytruckdriver"
+          class="fab fa-twitter-square"
+          target="_blank"
+        ></a>
+      </span>
+    </footer>
   </div>
 </template>
 
@@ -21,18 +34,52 @@
 import GlobalMessages from "@/components/GlobalMessages.vue";
 import GameTitle from "@/components/gameComponents/GameTitle.vue";
 import ScoreBar from "@/components/gameComponents/ScoreBar.vue";
+import GameBoard from "@/components/gameComponents/GameBoard.vue";
 
 export default {
   name: "EnglishKidsQuarantine",
   components: {
     GlobalMessages,
     GameTitle,
-    ScoreBar
+    ScoreBar,
+    GameBoard
+  },
+  data: function() {
+    return {
+      inGame: false
+    };
+  },
+  mounted() {
+    this.$root.$on("gameStartEvent", () => {
+      this.inGame = true;
+    });
   }
 };
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
+.english-kids-quarantine,
+a {
+  color: #4b6988;
+}
+.footer {
+  position: fixed;
+  padding: 0.5rem;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f3f5f7;
+  text-align: left;
+  font-size: 0.8rem;
+  box-shadow: 0px 4px 14px 0px rgba(104, 104, 104, 0.75);
+}
+.credits {
+  float: right;
+  padding-right: 2rem;
+}
 .custom-block.tip {
   background-color: #f3f5f7;
   border-color: #d7725a;

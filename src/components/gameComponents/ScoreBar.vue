@@ -44,6 +44,7 @@ export default {
   methods: {
     startGame() {
       this.inGame = true;
+      this.$root.$emit("gameStartEvent");
     }
   }
 };
@@ -52,6 +53,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .score-bar {
+  min-height: 3rem;
 }
 .lives {
   font-size: 1.5rem;
