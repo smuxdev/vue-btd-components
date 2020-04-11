@@ -6,7 +6,12 @@
       </span>
       <span class="word-list">
         <ul>
-          <li v-for="answer in answers" :key="answer" v-on:click="checkAnswer">{{answer}}</li>
+          <li
+            v-for="answer in answers"
+            :key="answer.imgNumber"
+            v-on:click="checkAnswer"
+            v-bind:value="answer.imgNumber"
+          >{{answer.answer}}</li>
         </ul>
       </span>
       <transition name="fade" mode="out-in">
@@ -44,15 +49,15 @@ export default {
       // Game initialization
       if (val) {
         this.answers = [
-          "Torch",
-          "Tree",
-          "Dog",
-          "In",
-          "Cat",
-          "In front of",
-          "Elephant"
+          { imgNumber: 1, answer: "Elephant", incorrect: false },
+          { imgNumber: 2, answer: "Whale", incorrect: false },
+          { imgNumber: 3, answer: "Jellyfish", incorrect: false },
+          { imgNumber: 4, answer: "Penguin", incorrect: false },
+          { imgNumber: 5, answer: "Bee", incorrect: false },
+          { imgNumber: 6, answer: "Crocodile", incorrect: false },
+          { imgNumber: 7, answer: "Owl", incorrect: false }
         ];
-        this.imgNumber = Math.floor(Math.random() * 5) + 1;
+        this.imgNumber = Math.floor(Math.random() * 7) + 1;
       }
     }
   },
@@ -62,18 +67,30 @@ export default {
     }
   },
   methods: {
-    checkAnswer() {
-      let points = 0;
-      if (this.tries <= 1) {
-        points = 10;
-      } else if (this.tries === 2) {
-        points = 5;
-      } else if (this.tries === 3) {
-        points = 2;
-      }
+    checkAnswer(evt) {
+      if (!event.target.className.includes("incorrect")) {
+        this.tries += 1; // Sum one try
+        if (evt.target.value !== this.imgNumber) {
+          event.target.className += " incorrect";
 
-      this.$root.$emit("addPointsEvent", points);
-      this.$root.$emit("loseLiveEvent");
+          this.$root.$emit("loseLiveEvent");
+        } else {
+          // TODO: Well done!
+          let points = 0;
+          if (this.tries <= 1) {
+            points = 10;
+          } else if (this.tries === 2) {
+            points = 5;
+          } else if (this.tries === 3) {
+            points = 2;
+          }
+
+          this.$root.$emit("addPointsEvent", points);
+        }
+      }
+    },
+    tipMe() {
+      // TODO:
     }
   }
 };
@@ -96,16 +113,22 @@ export default {
   list-style: none;
   user-select: none;
 }
-.word-list li:hover {
+.word-list li:hover:not("incorrect") {
   transform: scale(1.2);
   transform: translateX(0.2rem);
   opacity: 0.9;
   color: rgb(134, 74, 74);
 }
 .word-list li:active,
-.tip:active {
+.tip:active:not("incorrect") {
   transform: scale(0.9);
   opacity: 0.5;
+}
+
+.word-list li.incorrect {
+  text-decoration: line-through;
+  color: #d7725a;
+  cursor: default;
 }
 .tip:hover {
   opacity: 0.8;
