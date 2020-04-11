@@ -64,13 +64,12 @@ export default {
   },
   mounted() {
     this.$root.$on("gameStartEvent", () => {
-      this.inGame = true;
       this.lives = 3;
       this.points = 0;
       this.gameOver = false;
-    });
-    this.$root.$on("gameStartEvent", () => {
-      this.inGame = true;
+      setTimeout(() => {
+        this.inGame = true;
+      }, 400);
     });
     this.$root.$on("addPointsEvent", points => {
       this.points += points;
@@ -82,7 +81,7 @@ export default {
         this.inGame = false;
         setTimeout(() => {
           this.gameOver = true;
-        }, 1500);
+        }, 400);
       }
     });
   }

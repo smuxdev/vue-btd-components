@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     startGame() {
-      this.inGame = true;
       this.$root.$emit("gameStartEvent");
     }
   }
