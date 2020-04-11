@@ -11,6 +11,8 @@
         <b>find</b> the word in English.
       </p>
     </div>
+
+    <ScoreBar />
   </div>
 </template>
 
@@ -18,12 +20,14 @@
 // @ is an alias to /src
 import GlobalMessages from "@/components/GlobalMessages.vue";
 import GameTitle from "@/components/gameComponents/GameTitle.vue";
+import ScoreBar from "@/components/gameComponents/ScoreBar.vue";
 
 export default {
   name: "EnglishKidsQuarantine",
   components: {
     GlobalMessages,
-    GameTitle
+    GameTitle,
+    ScoreBar
   }
 };
 </script>
@@ -32,13 +36,13 @@ export default {
 .custom-block.tip {
   background-color: #f3f5f7;
   border-color: #d7725a;
+  font-size: 1.2rem;
 }
 .custom-block.tip {
   padding: 0.1rem 1.5rem;
   border-left-width: 0.5rem;
   border-left-style: solid;
-  margin: 1rem 0;
-  margin: 0 auto;
+  margin: 0.5rem 0;
 }
 .custom-block .custom-block-title {
   font-weight: 600;

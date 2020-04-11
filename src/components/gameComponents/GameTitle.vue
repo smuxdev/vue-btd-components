@@ -105,7 +105,7 @@ h1 span:before {
 .blobs_4 {
   background: #ff0000;
   width: 60px;
-  height: 60px;
+  height: 50px;
   top: 150px;
   left: 45%;
 }
