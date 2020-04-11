@@ -20,8 +20,15 @@
       <span class="credits">
         By Samuel González Izquerdo. 2020
         <a
+          title="Twitter"
           href="http://www.twitter.com/babytruckdriver"
           class="fab fa-twitter-square"
+          target="_blank"
+        ></a>
+        <a
+          title="GitHub"
+          href="https://github.com/babytruckdriver/"
+          class="fab fa-github-alt"
           target="_blank"
         ></a>
       </span>
@@ -60,6 +67,7 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
+  padding-left: 0.5rem;
 }
 .english-kids-quarantine,
 a {

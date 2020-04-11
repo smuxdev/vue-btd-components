@@ -26,8 +26,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .game-title {
-  font-family: typeface-titan-one, Arial, "Helvetica Neue", Helvetica,
-    sans-serif;
   width: 100%;
 }
 body {
