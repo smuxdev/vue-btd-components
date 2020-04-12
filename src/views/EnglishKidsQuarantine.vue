@@ -1,6 +1,5 @@
 <template>
   <div class="english-kids-quarantine">
-    <GlobalMessages />
     <GameTitle />
 
     <div class="custom-block tip">
@@ -13,7 +12,7 @@
     </div>
 
     <ScoreBar :inGame="inGame" :points="points" :lives="lives" />
-    <GameBoard :inGame="inGame" :points="points" :lives="lives" />
+    <GameBoard :inGame="inGame" :points="points" :lives="lives" :tries="tries" />
     <GameOver :gameOver="gameOver" />
 
     <footer class="footer">
@@ -39,7 +38,6 @@
 
 <script>
 // @ is an alias to /src
-import GlobalMessages from "@/components/GlobalMessages.vue";
 import GameTitle from "@/components/gameComponents/GameTitle.vue";
 import ScoreBar from "@/components/gameComponents/ScoreBar.vue";
 import GameBoard from "@/components/gameComponents/GameBoard.vue";
@@ -48,7 +46,6 @@ import GameOver from "@/components/gameComponents/GameOver.vue";
 export default {
   name: "EnglishKidsQuarantine",
   components: {
-    GlobalMessages,
     GameTitle,
     ScoreBar,
     GameBoard,
@@ -59,13 +56,15 @@ export default {
       inGame: false,
       gameOver: false,
       lives: 3,
-      points: 0
+      points: 0,
+      tries: 0
     };
   },
   mounted() {
     this.$root.$on("gameStartEvent", () => {
       this.lives = 3;
       this.points = 0;
+      this.tries = 0;
       this.gameOver = false;
       setTimeout(() => {
         this.inGame = true;
@@ -73,6 +72,9 @@ export default {
     });
     this.$root.$on("addPointsEvent", points => {
       this.points += points;
+    });
+    this.$root.$on("addTryEvent", () => {
+      this.tries += 1;
     });
     this.$root.$on("loseLiveEvent", () => {
       this.lives -= 1;
@@ -89,6 +91,9 @@ export default {
 </script>
 
 <style scoped>
+.english-kids-quarantine {
+  max-width: 1000px;
+}
 a {
   text-decoration: none;
   padding-left: 0.5rem;

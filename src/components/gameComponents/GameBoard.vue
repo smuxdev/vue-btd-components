@@ -30,7 +30,6 @@ export default {
   data: function() {
     return {
       imgNumber: 0,
-      tries: 0,
       answers: [],
       tipUsed: false
     };
@@ -42,6 +41,10 @@ export default {
       type: Number
     },
     points: {
+      default: 0,
+      type: Number
+    },
+    tries: {
       default: 0,
       type: Number
     }
@@ -71,7 +74,7 @@ export default {
   methods: {
     checkAnswer(evt) {
       if (!event.target.className.includes("incorrect")) {
-        this.tries += 1; // Sum one try
+        this.$root.$emit("addTryEvent"); // Sum one try
         if (evt.target.value !== this.imgNumber) {
           // Mark answer like failed
           this.answers.forEach(element => {
