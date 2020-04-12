@@ -218,14 +218,14 @@ export default {
   list-style: none;
   user-select: none;
 }
-.word-list li:hover:not("incorrect") {
+.word-list li:not(.incorrect):hover {
   transform: scale(1.2);
   transform: translateX(0.2rem);
   opacity: 0.9;
   color: rgb(134, 74, 74);
 }
 .word-list li:active,
-.tip:active:not("incorrect") {
+.tip:active:not(.incorrect) {
   transform: scale(0.9);
   opacity: 0.5;
 }
