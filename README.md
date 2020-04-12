@@ -1,4 +1,5 @@
 # vue-btd-components
+Just a bunch of 'Vue Single File components' for use in your interfaces.
 
 ## Project setup
 ```

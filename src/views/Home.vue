@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <img class="mapfre-logo" alt="Mapfre logo" src="../assets/logo-mapfre-byn.png.webp" />
 
-    <HelloWorld msg="Welcome to" title="Mapfre Vue Components" />
+    <HelloWorld msg="Welcome to" title="Vue Btd Components" />
   </div>
 </template>
 

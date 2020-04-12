@@ -1,14 +1,11 @@
 <template>
   <div class="catalog">
     <h1>
-      <span>Mapfre Vue Components</span> catalog
+      <span>Vue Btd Components</span> catalog
     </h1>
     <ul>
       <li>
         <router-link to="/globalMessagesTest">&lt;GlobalMessages&gt; component</router-link>
-      </li>
-      <li>
-        <router-link to="/englishKidsQuarantine">English Kids Quarantine</router-link>
       </li>
     </ul>
   </div>

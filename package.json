@@ -11,8 +11,7 @@
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
-    "typeface-roboto": "^0.0.75",
-    "typeface-titan-one": "^0.0.72"
+    "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
