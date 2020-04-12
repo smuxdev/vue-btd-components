@@ -19,7 +19,7 @@
     <footer class="footer">
       All images from: http://www.rawpixel.com
       <span class="credits">
-        By Samuel González Izquerdo. 2020
+        By Samuel González Izquierdo. 2020
         <a
           title="Twitter"
           href="http://www.twitter.com/babytruckdriver"

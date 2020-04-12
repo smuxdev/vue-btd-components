@@ -147,6 +147,7 @@ export default {
 
           // New game config
           if (!allUsed.call(this)) {
+            this.tipUsed = false;
             this.answers = shuffle(this.answers);
 
             this.imgNumber = Math.floor(Math.random() * 7) + 1; // Select a random answer
