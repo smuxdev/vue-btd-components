@@ -1,12 +1,12 @@
 <template>
   <transition name="slide-fade">
-    <div class="game-over" v-show="gameOver">Game Over</div>
+    <div class="end-game" v-show="endGame">Well Done!</div>
   </transition>
 </template>
 
 <script>
 export default {
-  name: "GameOver",
+  name: "EndGame",
   data: function() {
     return {
       imgNumber: 0,
@@ -15,7 +15,7 @@ export default {
     };
   },
   props: {
-    gameOver: {
+    endGame: {
       default: true,
       type: Boolean
     }
@@ -25,9 +25,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.game-over {
+.end-game {
   font-family: "Titan One", cursive;
-  color: #d7725a;
+  color: #7de668;
   font-size: 7rem;
   font-weight: 500;
 }

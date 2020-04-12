@@ -14,6 +14,7 @@
     <ScoreBar :inGame="inGame" :points="points" :lives="lives" />
     <GameBoard :inGame="inGame" :points="points" :lives="lives" :tries="tries" />
     <GameOver :gameOver="gameOver" />
+    <EndGame :endGame="endGame" />
 
     <footer class="footer">
       All images from: http://www.rawpixel.com
@@ -42,6 +43,7 @@ import GameTitle from "@/components/gameComponents/GameTitle.vue";
 import ScoreBar from "@/components/gameComponents/ScoreBar.vue";
 import GameBoard from "@/components/gameComponents/GameBoard.vue";
 import GameOver from "@/components/gameComponents/GameOver.vue";
+import EndGame from "@/components/gameComponents/EndGame.vue";
 
 export default {
   name: "EnglishKidsQuarantine",
@@ -49,12 +51,14 @@ export default {
     GameTitle,
     ScoreBar,
     GameBoard,
-    GameOver
+    GameOver,
+    EndGame
   },
   data: function() {
     return {
       inGame: false,
       gameOver: false,
+      endGame: false,
       lives: 3,
       points: 0,
       tries: 0
@@ -66,6 +70,7 @@ export default {
       this.points = 0;
       this.tries = 0;
       this.gameOver = false;
+      this.endGame = false;
       setTimeout(() => {
         this.inGame = true;
       }, 400);
@@ -73,8 +78,20 @@ export default {
     this.$root.$on("addPointsEvent", points => {
       this.points += points;
     });
+    this.$root.$on("resetLivesEvent", () => {
+      this.lives = 3;
+    });
+    this.$root.$on("resetTriesEvent", () => {
+      this.tries = 0;
+    });
     this.$root.$on("addTryEvent", () => {
       this.tries += 1;
+    });
+    this.$root.$on("endGameEvent", () => {
+      this.inGame = false;
+      setTimeout(() => {
+        this.endGame = true;
+      }, 400);
     });
     this.$root.$on("loseLiveEvent", () => {
       this.lives -= 1;

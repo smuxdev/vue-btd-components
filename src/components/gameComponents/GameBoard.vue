@@ -54,13 +54,13 @@ export default {
       // Game initialization
       if (val) {
         this.answers = [
-          { imgNumber: 1, answer: "Elephant", incorrect: false },
-          { imgNumber: 2, answer: "Whale", incorrect: false },
-          { imgNumber: 3, answer: "Jellyfish", incorrect: false },
-          { imgNumber: 4, answer: "Penguin", incorrect: false },
-          { imgNumber: 5, answer: "Bee", incorrect: false },
-          { imgNumber: 6, answer: "Crocodile", incorrect: false },
-          { imgNumber: 7, answer: "Owl", incorrect: false }
+          { imgNumber: 1, answer: "Elephant", incorrect: false, used: false },
+          { imgNumber: 2, answer: "Whale", incorrect: false, used: false },
+          { imgNumber: 3, answer: "Jellyfish", incorrect: false, used: false },
+          { imgNumber: 4, answer: "Penguin", incorrect: false, used: false },
+          { imgNumber: 5, answer: "Bee", incorrect: false, used: false },
+          { imgNumber: 6, answer: "Crocodile", incorrect: false, used: false },
+          { imgNumber: 7, answer: "Owl", incorrect: false, used: false }
         ];
         this.imgNumber = Math.floor(Math.random() * 7) + 1; // Select a random answer
       }
@@ -73,8 +73,49 @@ export default {
   },
   methods: {
     checkAnswer(evt) {
+      function shuffle(array) {
+        var currentIndex = array.length,
+          temporaryValue,
+          randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+      }
+
+      function isUsed(answerNum) {
+        for (let i = 0; i < this.answers.length; i++) {
+          if (this.answers[i].imgNumber === answerNum && this.answers[i].used) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+
+      function allUsed() {
+        for (let i = 0; i < this.answers.length; i++) {
+          if (!this.answers[i].used) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      // Desorder words and select a new answer
       if (!event.target.className.includes("incorrect")) {
         this.$root.$emit("addTryEvent"); // Sum one try
+        this.tries += 1; // Bad practice!
         if (evt.target.value !== this.imgNumber) {
           // Mark answer like failed
           this.answers.forEach(element => {
@@ -84,7 +125,8 @@ export default {
           });
           this.$root.$emit("loseLiveEvent");
         } else {
-          // TODO: Well done!
+          // Well done!
+          // Points calculus
           let points = 0;
           if (this.tries <= 1) {
             points = 10;
@@ -95,6 +137,30 @@ export default {
           }
 
           this.$root.$emit("addPointsEvent", points);
+          this.answers.forEach(element => {
+            if (element.imgNumber === evt.target.value) {
+              element.used = true;
+            }
+          });
+          this.$root.$emit("resetLivesEvent");
+          this.$root.$emit("resetTriesEvent");
+
+          // New game config
+          if (!allUsed.call(this)) {
+            this.answers = shuffle(this.answers);
+
+            this.imgNumber = Math.floor(Math.random() * 7) + 1; // Select a random answer
+            while (isUsed.call(this, this.imgNumber)) {
+              this.imgNumber = Math.floor(Math.random() * 7) + 1;
+            }
+
+            this.answers.forEach(element => {
+              element.incorrect = false;
+            });
+          } else {
+            // End game!! Congrats!
+            this.$root.$emit("endGameEvent");
+          }
         }
       }
     },
@@ -167,6 +233,10 @@ export default {
 .word-list li.incorrect {
   text-decoration: line-through;
   color: #d7725a;
+  cursor: default;
+}
+.word-list li.correct {
+  color: #75e659;
   cursor: default;
 }
 .tip:hover {
