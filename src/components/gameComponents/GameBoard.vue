@@ -11,12 +11,13 @@
             :key="answer.imgNumber"
             v-on:click="checkAnswer"
             v-bind:value="answer.imgNumber"
+            :class="{'incorrect': answer.incorrect}"
           >{{answer.answer}}</li>
         </ul>
       </span>
       <transition name="fade" mode="out-in">
         <span class="tip" v-show="needTip">
-          <i class="fas fa-ambulance"></i>
+          <i class="fas fa-ambulance" v-on:click="tipMe"></i>
         </span>
       </transition>
     </div>
@@ -30,7 +31,8 @@ export default {
     return {
       imgNumber: 0,
       tries: 0,
-      answers: []
+      answers: [],
+      tipUsed: false
     };
   },
   props: {
@@ -57,13 +59,13 @@ export default {
           { imgNumber: 6, answer: "Crocodile", incorrect: false },
           { imgNumber: 7, answer: "Owl", incorrect: false }
         ];
-        this.imgNumber = Math.floor(Math.random() * 7) + 1;
+        this.imgNumber = Math.floor(Math.random() * 7) + 1; // Select a random answer
       }
     }
   },
   computed: {
     needTip: function() {
-      return this.lives < 3;
+      return this.lives < 3 && !this.tipUsed;
     }
   },
   methods: {
@@ -71,8 +73,12 @@ export default {
       if (!event.target.className.includes("incorrect")) {
         this.tries += 1; // Sum one try
         if (evt.target.value !== this.imgNumber) {
-          event.target.className += " incorrect";
-
+          // Mark answer like failed
+          this.answers.forEach(element => {
+            if (element.imgNumber === evt.target.value) {
+              element.incorrect = true;
+            }
+          });
           this.$root.$emit("loseLiveEvent");
         } else {
           // TODO: Well done!
@@ -90,7 +96,37 @@ export default {
       }
     },
     tipMe() {
-      // TODO:
+      function isFailed(answerNum) {
+        for (let i = 0; i < this.answers.length; i++) {
+          if (
+            this.answers[i].imgNumber === answerNum &&
+            this.answers[i].incorrect
+          ) {
+            return true;
+          }
+        }
+
+        return false;
+      }
+      function markAsFailed(goodAnswer, times) {
+        for (let i = 0; i < times; i++) {
+          let answerToMark = Math.floor(Math.random() * 7) + 1;
+          while (
+            answerToMark === goodAnswer ||
+            isFailed.call(this, answerToMark)
+          ) {
+            answerToMark = Math.floor(Math.random() * 7) + 1;
+          }
+          this.answers.forEach(element => {
+            if (element.imgNumber == answerToMark) {
+              element.incorrect = true;
+            }
+          });
+        }
+      }
+
+      markAsFailed.call(this, this.imgNumber, 2);
+      this.tipUsed = true;
     }
   }
 };
