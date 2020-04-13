@@ -32,8 +32,8 @@
             <input v-model="msg" type="text" style="min-width: 220px" required />
           </span>
           <span>
-            <button v-on:click="showMessage">Show Message</button>
-            <button v-on:click="hiddeMessage" v-show="globalMessagesVisible">Discard</button>
+            <button type="button" v-on:click="showMessage">Show Message</button>
+            <button type="button" v-on:click="hiddeMessage" v-show="globalMessagesVisible">Discard</button>
           </span>
         </form>
       </fieldset>
@@ -45,8 +45,8 @@
           <code>showMessageEvent</code> and
           <code>hiddeMessageEvent</code> events:
           <br />-
-          <code>showMessageEvent (type, message)</code>: requires two parameters. The first will be the type of
-          <code>message, success, info, warning or danger</code>, which will define the color of the alert.
+          <code>showMessageEvent (type, message)</code>: requires two parameters. The first will be the type of message,
+          <code>success, info, warning or danger</code>, which will define the color of the alert.
           The second is the message that this alert will display.
           <br />-
           <code>hiddeMessageEvent</code>: has no parameters and triggers removal of the alert.
